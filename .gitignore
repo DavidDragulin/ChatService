@@ -1,0 +1,40 @@
+# Compiled Object files
+*.o
+*.cmo
+*.cmi
+*.cma
+*.cmx
+*.cmxa
+*.cmxs
+*.cmt
+*.cmti
+
+# Build artifacts
+_build/
+*.byte
+*.native
+
+# OPAM files
+.opam/
+
+# Merlin files (used for editor tooling)
+.merlin
+
+# ocamlbuild files
+myocamlbuild.ml
+myocamlbuild
+
+# Backup files created by editors
+*~
+*.backup
+
+# Logs
+*.log
+
+# Directories created by Dune
+_dune/
+*.install
+
+# Executables
+server
+client
