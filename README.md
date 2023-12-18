@@ -23,11 +23,15 @@ To compile the server and client programs, use the following commands:
 
 For the server:
 
+```
 ocamlc -thread unix.cma threads.cma -o server server.ml
+```
 
 For the client:
 
+```
 ocamlc unix.cma -o client client.ml
+```
 
 
 ## Usage
@@ -74,6 +78,3 @@ While the current implementation of the OCaml Chat Application meets the basic r
 9. **Cross-Platform Compatibility**: Ensuring the application runs smoothly on different platforms (like Windows or macOS) in addition to Linux could increase its usability.
 
 10. **Automated Testing**: Developing a suite of automated tests would help ensure the reliability and stability of the application as new features are added or existing ones are modified.
-
-These improvements would not only enhance the functionality and user experience of the chat application but also provide a great learning opportunity for advanced OCaml programming and network communication concepts.
-
