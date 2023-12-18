@@ -1,19 +1,27 @@
 open Unix
 
+(* Configuration Parameters *)
 let buffer_size = 1024
+let default_server_ip = "127.0.0.1"
+let default_port = 8080
 
+(* Function to connect to the server and handle communication *)
 let () =
-  let server_ip = "127.0.0.1" in
-  let port = 8080 in
+  let server_ip = if Array.length Sys.argv > 1 then Sys.argv.(1) else default_server_ip in
+  let port = if Array.length Sys.argv > 2 then int_of_string Sys.argv.(2) else default_port in
   let server_addr = ADDR_INET (inet_addr_of_string server_ip, port) in
   let sock = socket PF_INET SOCK_STREAM 0 in
+
   try
+    (* Establish connection *)
     connect sock server_addr;
     let buffer = Bytes.create buffer_size in
     let recv_len = recv sock buffer 0 buffer_size [] in
     if recv_len = 0 then raise End_of_file;
     let response = Bytes.sub_string buffer 0 recv_len in
     Printf.printf "Server response: %s\n" response;
+
+    (* Message exchange loop *)
     if response = "You are now connected to the server.\n" then
       try
         while true do
