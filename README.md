@@ -36,16 +36,19 @@ ocamlc unix.cma -o client client.ml
 
 To start the server, run:
 
+```
 ./server [port]
-port (optional): The port number on which the server will listen. If not specified, the default is 8080.
+```
 
+port (optional): The port number on which the server will listen. If not specified, the default is 8080.
 
 ### Client
 
 To start the client, run:
 
+```
 ./client [server_ip] [port]
-
+```
 Type messages in the client terminal and observe the interaction with the server.
 
 ## Future Improvements
