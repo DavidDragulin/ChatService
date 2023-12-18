@@ -18,14 +18,17 @@ let handle_client sock =
       let recv_len = recv sock buffer 0 buffer_size [] in
       if recv_len = 0 then raise Exit;
       let msg = Bytes.sub_string buffer 0 recv_len in
-      Printf.printf "Received: %s\n" msg;
+      Printf.printf "Received: %s\n%!" msg;  (* Flush is included with %! *)
       let response = "Message received" in
       ignore (send sock (Bytes.of_string response) 0 (String.length response) []);
     done
   with
-  | Exit -> Printf.printf "Client disconnected\n%!"
-  | exn -> Printf.printf "An error occurred: %s\n%!" (Printexc.to_string exn);
-  close sock  (* Ensure socket is closed *)
+  | Exit -> 
+      Printf.printf "Client disconnected\n%!";
+  | exn -> 
+      Printf.printf "An error occurred: %s\n%!" (Printexc.to_string exn);
+  close sock;
+  active_client := None
 
 let rec serve_clients () =
   Mutex.lock queue_mutex;
